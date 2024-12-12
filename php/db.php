@@ -1,9 +1,9 @@
 <?php
 // Paramètres de connexion à la base de données
 define ('DB_HOST', 'localhost') ; // L'adresse de ton serveur de base de données
-define ('DB_NAME', 'helpcook'); // Le nom de ta base de données
+define ('DB_NAME', 'homecook'); // Le nom de ta base de données
 define ('DB_USER', 'root'); // Nom d'utilisateur de la base de données (par défaut 'root' en local)
-define ('DB_PASS', ''); // Mot de passe pour l'utilisateur (vide en local pour XAMPP/MAMP)
+define ('DB_PASS', 'root'); // Mot de passe pour l'utilisateur (vide en local pour XAMPP/MAMP)
 
 try {
     // Créer une nouvelle instance de PDO pour se connecter à la base de données
