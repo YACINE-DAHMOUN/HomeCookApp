@@ -9,8 +9,8 @@
 <nav aria-label="principal-nav">
     <ul>
         <li><a href="profil.php">Accueil</a></li>
-        <li><a href="recettes_suggerees.php">Recettes</a></li>
-        <li><a href="profil.php">Profil</a></li>
+        <li><a href="get_recipes.php">Recettes</a></li>
+        <li><a href="profil.html.php">Profil</a></li>
         <li><a href="login.php">Déconnexion</a></li>
     </ul>
 
