@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     </form>
 </div>
-<p>Vous n'êtes pas encore membre ? <div id ="button-register"><a href="register.php"><button type="submit">Inscrivez-Vous</button> </a></p></div>
+<p>Vous n'êtes pas encore membre ? <div id ="button-register"><a href="register.html.php"><button type="submit">Inscrivez-Vous</button> </a></p></div>
 
 </body>
 </html>
