@@ -17,13 +17,13 @@
     </div>
     <div>
         <p>Vous êtes membre ?</p>
-        <form action="php/login.php" method="post">
+        <form action="src/controllers/AuthController.php" method="post">
             <button type="submit">Connectez-vous</button>
         </form>
     </div>
     <div>
         <p>Pas encore ? c'est par ici 👇👇</p>
-        <form action="php/register.php" method="get">
+        <form action="src/controllers/RegisterController.php" method="get">
             <button type="submit">Inscrivez-vous</button>
         </form>
     </div>
