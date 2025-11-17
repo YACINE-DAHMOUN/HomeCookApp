@@ -24,14 +24,14 @@ try {
 
     $first_name = $user['first_name'];
     $last_name = $user['last_name'];
-
 } catch (PDOException $e) {
     error_log("Erreur de récupération des informations de l'utilisateur : " . $e->getMessage());
     exit;
 }
 
 // Fonction de traduction améliorée
-function translateToEnglish($name_fr) {
+function translateToEnglish($name_fr)
+{
     global $pdo;
 
     // 1. Vérifier d'abord dans la base de données existante
@@ -46,7 +46,7 @@ function translateToEnglish($name_fr) {
     $translations = [
         // Fruits
         "tomate" => "tomato",
-        "pomme" => "apple", 
+        "pomme" => "apple",
         "banane" => "banana",
         "orange" => "orange",
         "fraise" => "strawberry",
@@ -54,10 +54,10 @@ function translateToEnglish($name_fr) {
         "citron" => "lemon",
         "pamplemousse" => "grapefruit",
         "kiwi" => "kiwi",
-        
+
         // Légumes
         "carotte" => "carrot",
-        "oignon" => "onion", 
+        "oignon" => "onion",
         "poireau" => "leek",
         "haricot" => "bean",
         "petit pois" => "pea",
@@ -65,28 +65,28 @@ function translateToEnglish($name_fr) {
         "aubergine" => "eggplant",
         "épinard" => "spinach",
         "poivron" => "bell pepper",
-        
+
         // Protéines
         "poulet" => "chicken",
-        "bœuf" => "beef", 
+        "bœuf" => "beef",
         "porc" => "pork",
         "saumon" => "salmon",
         "thon" => "tuna",
         "œuf" => "egg",
-        
+
         // Produits laitiers
         "lait" => "milk",
         "beurre" => "butter",
         "fromage" => "cheese",
         "yaourt" => "yogurt",
-        
+
         // Céréales et féculents
         "pain" => "bread",
         "riz" => "rice",
         "pâtes" => "pasta",
         "pomme de terre" => "potato",
         "farine" => "flour",
-        
+
         // Assaisonnements et condiments
         "sel" => "salt",
         "poivre" => "pepper",
@@ -95,7 +95,7 @@ function translateToEnglish($name_fr) {
         "eau" => "water",
         "vinaigre" => "vinegar",
         "sauce" => "sauce",
-        
+
         // Herbes et épices
         "persil" => "parsley",
         "basilic" => "basil",
@@ -104,7 +104,7 @@ function translateToEnglish($name_fr) {
     ];
 
     $name_lower = mb_strtolower($name_fr, 'UTF-8');
-    
+
     // Correspondance exacte dans le dictionnaire
     if (isset($translations[$name_lower])) {
         $translated = $translations[$name_lower];
@@ -142,10 +142,10 @@ function translateToEnglish($name_fr) {
     if ($response) {
         $result = json_decode($response, true);
         $translated = $result['translatedText'] ?? $name_fr;
-        
-        
+
+
         insertTranslation($name_fr, $translated);
-        
+
         return $translated;
     }
 
@@ -154,21 +154,22 @@ function translateToEnglish($name_fr) {
 }
 
 // Fonction pour insérer la traduction dans ingredient_translations
-function insertTranslation($name_fr, $name_en) {
+function insertTranslation($name_fr, $name_en)
+{
     global $pdo;
-    
-    
+
+
     $query = $pdo->prepare("SELECT id FROM ingredient_translations WHERE name_fr = :name_fr AND name_en = :name_en");
     $query->execute(['name_fr' => $name_fr, 'name_en' => $name_en]);
     $translation = $query->fetch();
-    
+
     // Si la traduction n'existe pas, l'insérer
     if (!$translation) {
         $query = $pdo->prepare("INSERT INTO ingredient_translations (name_fr, name_en) VALUES (:name_fr, :name_en)");
         $query->execute(['name_fr' => $name_fr, 'name_en' => $name_en]);
         return $pdo->lastInsertId();
     }
-    
+
     return $translation['id'];
 }
 
@@ -195,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             // Traduire le nom de l'ingrédient en anglais
             $translated_name = translateToEnglish($name);
-            
+
             // Insérer l'ingrédient dans la table ingredients
             $query = $pdo->prepare("INSERT INTO ingredients (name_fr, name_en, quantity, unit, user_id, created_at) 
                                     VALUES (:name_fr, :name_en, :quantity, :unit, :user_id, NOW())");
@@ -207,10 +208,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'user_id' => $user_id
             ]);
 
-            
+
             header('Location: profil.php');
             exit;
-
         } catch (PDOException $e) {
             error_log("Erreur lors de l'ajout de l'ingrédient : " . $e->getMessage());
             $errors[] = "Erreur lors de l'ajout de l'ingrédient";
@@ -230,5 +230,3 @@ try {
 
 // Inclure le template HTML
 require __DIR__ . '/../../templates/profil.html.php';
-?>
-

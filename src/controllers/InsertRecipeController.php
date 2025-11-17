@@ -4,8 +4,9 @@ require_once __DIR__ . '/../../vendor/composer/autoload_classmap.php';  // Inclu
 
 $api_key = 'e332d0e53d5d40f6862c3f3b8d330775';
 
-function fetchRecipesFromApi($api_key) {
-    $url = 'https://api.spoonacular.com/recipes/random?apiKey='.$api_key.'&number=300'; // Notez le 'apiKey' en minuscules
+function fetchRecipesFromApi($api_key)
+{
+    $url = 'https://api.spoonacular.com/recipes/random?apiKey=' . $api_key . '&number=300'; // Notez le 'apiKey' en minuscules
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -69,4 +70,3 @@ if (isset($recipes['recipes']) && is_array($recipes['recipes'])) {
 } else {
     echo 'Aucune recette récupérée depuis l\'API.';
 }
-?>

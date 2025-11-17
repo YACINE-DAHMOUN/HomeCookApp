@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomeCook</title>
 </head>
+
 <body>
-   <h1 id="title">HomeCook</h1>
-   <h2 id="subtitle">Bienvenue sur HomeCook</h2>
-   <div id="description">
-    <p >Vous ne savez pas quoi cuisiner ce soir ?</p>
-    <p>HomeCook est une application web qui peut vous simplifier votre quotidien en vous permettans de trouver des recettes de cuisine en fonction des ingrédients que vous avez chez vous.</p>
-    <p>Vous n'avez qu'à renseigner les ingrédients que vous avez et HomeCook vous proposera des recettes en fonction de ces ingrédients.</p>
-    <p>Vous pouvez aussi partager vos recettes avec la communauté en vous inscrivant sur HomeCook.</p>
-    <p>Alors n'attendez plus et inscrivez-vous sur HomeCook pour profiter de toutes ces fonctionnalités.</p>
+    <h1 id="title">HomeCook</h1>
+    <h2 id="subtitle">Bienvenue sur HomeCook</h2>
+    <div id="description">
+        <p>Vous ne savez pas quoi cuisiner ce soir ?</p>
+        <p>HomeCook est une application web qui peut vous simplifier votre quotidien en vous permettans de trouver des recettes de cuisine en fonction des ingrédients que vous avez chez vous.</p>
+        <p>Vous n'avez qu'à renseigner les ingrédients que vous avez et HomeCook vous proposera des recettes en fonction de ces ingrédients.</p>
+        <p>Vous pouvez aussi partager vos recettes avec la communauté en vous inscrivant sur HomeCook.</p>
+        <p>Alors n'attendez plus et inscrivez-vous sur HomeCook pour profiter de toutes ces fonctionnalités.</p>
     </div>
     <div>
         <p>Vous êtes membre ?</p>
@@ -28,4 +30,5 @@
         </form>
     </div>
 </body>
+
 </html>

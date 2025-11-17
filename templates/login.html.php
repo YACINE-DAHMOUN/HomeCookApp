@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - HomeCook</title>
     <link href="../../assets/css/login.css" rel="stylesheet">
 </head>
+
 <body>
     <h1>HomeCook</h1>
     <h2>Connectez-vous :</h2>
@@ -30,4 +32,5 @@
         </form>
     </div>
 </body>
+
 </html>

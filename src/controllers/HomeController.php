@@ -26,7 +26,6 @@ try {
     // Récupérer le prénom et le nom de l'utilisateur
     $first_name = $user['first_name'];
     $last_name = $user['last_name'];
-
 } catch (PDOException $e) {
     error_log("Erreur de récupération des informations de l'utilisateur : " . $e->getMessage());
     exit;
@@ -35,15 +34,18 @@ try {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
     <h1>Bonjour, <?= htmlspecialchars($last_name) ?> !</h1>
     <h2>Bienvenus sur HomeCook</h2>
 
 </body>
+
 </html>

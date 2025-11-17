@@ -43,17 +43,19 @@ $query->execute($user_ingredients);
 $recipes = $query->fetchAll(PDO::FETCH_ASSOC);
 
 // Calculer le score de correspondance des ingrédients
-function calculate_ingredient_match($recipe_ingredients, $user_ingredients) {
-    $recipe_ingredients = array_map('strtolower', 
+function calculate_ingredient_match($recipe_ingredients, $user_ingredients)
+{
+    $recipe_ingredients = array_map(
+        'strtolower',
         array_column(json_decode($recipe_ingredients, true), 'name')
     );
-    
+
     $match_count = count(array_intersect($recipe_ingredients, $user_ingredients));
     return $match_count / count($recipe_ingredients);
 }
 
 // Trier les recettes par correspondance d'ingrédients
-usort($recipes, function($a, $b) use ($user_ingredients) {
+usort($recipes, function ($a, $b) use ($user_ingredients) {
     $match_a = calculate_ingredient_match($a['ingredients'], $user_ingredients);
     $match_b = calculate_ingredient_match($b['ingredients'], $user_ingredients);
     return $match_b <=> $match_a; // Tri décroissant
@@ -72,7 +74,7 @@ if ($recipes_for_current_page) {
     echo "<div class='recipe-container'>";
     foreach ($recipes_for_current_page as $recipe) {
         $ingredients = json_decode($recipe['ingredients'], true);
-        
+
         // Calculer le pourcentage de correspondance
         $match_percentage = calculate_ingredient_match($recipe['ingredients'], $user_ingredients) * 100;
 
@@ -86,34 +88,34 @@ if ($recipes_for_current_page) {
         }
 
         // Affichage des instructions
-       
+
         // Modification de la partie affichage des instructions
-echo "<h3>Instructions</h3>";
-$instructions = $recipe['instructions'];
+        echo "<h3>Instructions</h3>";
+        $instructions = $recipe['instructions'];
 
-// Vérifier si les instructions contiennent déjà des balises HTML
-if (strpos($instructions, '<') === false) {
-    // Si pas de balises HTML, convertir le texte en liste
-    $instruction_steps = explode('.', $instructions);
-    $instructions = "<ol>";
-    foreach ($instruction_steps as $step) {
-        $step = trim($step);
-        if (!empty($step)) {
-            $instructions .= "<li>" . htmlspecialchars($step) . "</li>";
+        // Vérifier si les instructions contiennent déjà des balises HTML
+        if (strpos($instructions, '<') === false) {
+            // Si pas de balises HTML, convertir le texte en liste
+            $instruction_steps = explode('.', $instructions);
+            $instructions = "<ol>";
+            foreach ($instruction_steps as $step) {
+                $step = trim($step);
+                if (!empty($step)) {
+                    $instructions .= "<li>" . htmlspecialchars($step) . "</li>";
+                }
+            }
+            $instructions .= "</ol>";
+        } else {
+            // Si déjà du HTML, s'assurer que c'est sécurisé
+            $instructions = strip_tags($instructions, '<ol><ul><li>');
         }
-    }
-    $instructions .= "</ol>";
-} else {
-    // Si déjà du HTML, s'assurer que c'est sécurisé
-    $instructions = strip_tags($instructions,'<ol><ul><li>' );
-}
 
-echo "<div class='instructions'>";
-echo $instructions;
-echo "</div>";
+        echo "<div class='instructions'>";
+        echo $instructions;
+        echo "</div>";
         $instructions = htmlspecialchars($recipe['instructions']);
         echo "<div class='instructions'>";
-       
+
         echo "</div>";
 
         // Affichage des ingrédients
@@ -124,10 +126,10 @@ echo "</div>";
                 $ingredient_name = htmlspecialchars($ingredient['name'] ?? 'Ingrédient non nommé');
                 $in_user_ingredients = in_array(strtolower($ingredient_name), array_map('strtolower', $user_ingredients));
                 $class = $in_user_ingredients ? 'ingredient-available' : 'ingredient-missing';
-                
-                echo "<li class='$class'>" . $ingredient_name . 
-                     ($in_user_ingredients ? " (disponible)" : " (à acheter)") . 
-                     "</li>";
+
+                echo "<li class='$class'>" . $ingredient_name .
+                    ($in_user_ingredients ? " (disponible)" : " (à acheter)") .
+                    "</li>";
             }
         }
         echo "</ul>";
@@ -164,7 +166,3 @@ echo "</div>";
 } else {
     echo "<p>Aucune recette correspondante trouvée.</p>";
 }
-
-// Inclure le template HTML
-require __DIR__ . '/../../templates/recipes.html.php';
-?>
