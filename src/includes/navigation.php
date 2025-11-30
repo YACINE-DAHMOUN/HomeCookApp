@@ -8,15 +8,15 @@
 </head>
 
 <body>
-    <nav aria-label="principal-nav">
-        <ul>
-            <li><a href="../controllers/ProfileController.php">Accueil</a></li>
-            <li><a href="../controllers/RecipeController.php">Recettes</a></li>
-            <li><a href="../controllers/ProfileController.php">Profil</a></li>
-            <li><a href="../controllers/AuthController.php">Déconnexion</a></li>
-        </ul>
-
-    </nav>
+    <nav style="background: #333; padding: 15px; margin-bottom: 20px;">
+    <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
+        <li><a href="index.php?page=home" style="color: white; text-decoration: none;">Accueil</a></li>
+        <li><a href="index.php?page=register" style="color: white; text-decoration: none;">Inscription</a></li>
+        <li><a href="index.php?page=login" style="color: white; text-decoration: none;">Connexion</a></li>
+        <li><a href="index.php?page=recipes" style="color: white; text-decoration: none;">Recettes</a></li>
+        <li><a href="index.php?page=profil" style="color: white; text-decoration: none;">Profil</a></li>
+    </ul>
+</nav>
 </body>
 
 </html>
