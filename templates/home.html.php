@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - HomeCook</title>
     <link href="../../assets/css/home.css" rel="stylesheet">
+    <link rel="icon" href="HomeCookApp\assets\images\logo.png" type="image/png">
 </head>
 
+<header class="header">
+    <img src="/assets/images/logo.png" alt="HomeCook">
+</header>
+
 <body>
-    <h1>Bonjour, <?= htmlspecialchars($last_name) ?> !</h1>
+    <h1>Bonjour <?= htmlspecialchars($last_name) ?> !</h1>
     <h2>Bienvenus sur HomeCook</h2>
+
     <div id="description">
-        <p>Vous ne savez pas quoi cuisiner ce soir ?</p>
+        <p id="slogan">Vous ne savez pas quoi cuisiner ce soir ?</p>
         <p>HomeCook est une application web qui peut vous simplifier votre quotidien en vous permettans de trouver des recettes de cuisine en fonction des ingrédients que vous avez chez vous.</p>
         <p>Vous n'avez qu'à renseigner les ingrédients que vous avez et HomeCook vous proposera des recettes en fonction de ces ingrédients.</p>
         <p>Vous pouvez aussi partager vos recettes avec la communauté en vous inscrivant sur HomeCook.</p>
