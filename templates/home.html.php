@@ -9,11 +9,12 @@
     <link rel="icon" href="HomeCookApp\assets\images\logo.png" type="image/png">
 </head>
 
-<header class="header">
-    <img src="/assets/images/logo.png" alt="HomeCook">
-</header>
+
 
 <body>
+    <header class="header"></header>
+
+    
     <h1>Bonjour <?= htmlspecialchars($last_name) ?> !</h1>
     <h2>Bienvenus sur HomeCook</h2>
 
